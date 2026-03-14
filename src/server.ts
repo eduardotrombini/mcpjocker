@@ -100,6 +100,29 @@ const getDadJoke = server.registerTool(
 const app = express();
 app.use(express.json());
 
+app.get("/", (req: Request, res: Response) => {
+  res.send(`
+    <html>
+      <head>
+        <title>MCP Jocker Server</title>
+        <style>
+          body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #f0f2f5; }
+          .container { text-align: center; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+          h1 { color: #1a73e8; }
+          p { color: #5f6368; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1>🤡 MCP Jocker Server</h1>
+          <p>The server is up and running!</p>
+          <p>MCP Endpoint: <code>POST /mcp</code></p>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
 app.post("/mcp", async (req: Request, res: Response) => {
   console.log("Received MCP request:", req.body);
   try {
